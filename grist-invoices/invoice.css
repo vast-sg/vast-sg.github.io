@@ -1,17 +1,17 @@
 body {
-  font-family: Operator Mono, monospace;
+  font-family: Geist, sans-serif;
   max-width: 800px;
   margin: 0 auto;
   padding: 5px;
 }
 
 .meta {
-  color: #ff8000;
+  color: #222;
 }
 
 .header .title {
-  font-size: 300%;
-  font-weight: bold;
+  font-size: 200%;
+  /* font-weight: bold; */
 }
 
 .header .meta {
@@ -27,8 +27,9 @@ body {
 }
 
 .supplier {
-  color: #4682B4;
+  color: #222;
   display: block;
+  text-align: right;
 }
 
 .block {
@@ -36,35 +37,39 @@ body {
   display: block;
 }
 
-.client, .items, .summary {
+.client,
+.items,
+.summary {
   padding: 1px;
   margin-top: 1em;
   margin-bottom: 1em;
-  background: #ff8000;
+  background: #eee;
   -webkit-print-color-adjust: exact !important;
   color-adjust: exact !important;
 }
 
-.client .title, .summary .title {
+.client .title,
+.summary .title {
   margin-left: 4px;
-  color: white;
+  color: 222;
   text-transform: uppercase;
 }
 
-.client .details, .summary .details {
+.client .details,
+.summary .details {
   padding: 4px;
   background-color: var(--grist-theme-page-panels-main-panel-bg, white);
 }
 
 table.items {
   width: 100%;
-  border: 1px solid #ff8000;
+  border: 1px solid #eee;
   border-collapse: collapse;
 }
 
 table.items th {
   text-align: left;
-  color: white;
+  color: #222;
   text-transform: uppercase;
   font-weight: normal;
   padding: 4px;
@@ -75,21 +80,27 @@ table.items td {
   padding: 4px;
 }
 
-.client .title, .summary .title, table.items th, .help .title {
+.client .title,
+.summary .title,
+table.items th,
+.help .title {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-.money, .number {
+.money,
+.number {
   text-align: right;
 }
 
 .name {
-  color: #000080;
+  color: #222;
+  font-weight: 500;
 }
 
 .address {
-  padding-bottom: 1em;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
 }
 
 div.date-tag {
@@ -111,7 +122,8 @@ div.summary {
   align-items: flex-end;
 }
 
-div.summary .part, div.summary .total {
+div.summary .part,
+div.summary .total {
   padding: 10px;
 }
 
@@ -123,13 +135,13 @@ div.summary .part {
 div.summary .total {
   display: block;
   flex-grow: 1;
-  background: #000080;
+  background: #ddd;
   font-size: 140%;
 }
 
 div.summary {
-  border-top-right-radius: 2em;
-  border-bottom-right-radius: 2em;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 div.summary .total {
@@ -137,7 +149,8 @@ div.summary .total {
   border-bottom-right-radius: 0.5em;
 }
 
-div.summary .title, div.summary .details {
+div.summary .title,
+div.summary .details {
   text-align: right;
 }
 
@@ -154,7 +167,7 @@ div.summary::after {
 
 .email::before {
   content: "\2709";
-  margin-right: 0.5em;  
+  margin-right: 0.5em;
 }
 
 .thanks {
@@ -163,7 +176,9 @@ div.summary::after {
   font-size: 200%;
 }
 
-div.instructions, .newlined, p.note {
+div.instructions,
+.newlined,
+p.note {
   white-space: pre-line;
 }
 
@@ -176,7 +191,8 @@ div.paid {
   top: 20px;
   border: 5px solid red;
   float: left;
-  font-weight: bolder;
+  font-weight: normal;
+  padding: 1cqi 20px;
 }
 
 .app {
@@ -198,14 +214,15 @@ div.print {
 div.print a {
   background: #C83200;
   display: block;
-  font-size: 200%;
+  font-size: 150%;
   color: white;
   text-decoration: none;
   padding: 0.25em;
-  padding-top: 0.5em;
-  padding-right: 0.5em;
-  border-top-right-radius: 0.5em;
+  padding-top: 0.25em;
+  padding-right: 0.25em;
+  border-radius: 0.25em;
   text-transform: uppercase;
+  margin: 0.25em;
 }
 
 div.print a:hover {
@@ -307,3 +324,17 @@ div.column-name {
   border-radius: 0.25em;
 }
 
+.disclaimer {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.disclaimer span {
+  font-weight: 500;
+}
+
+.disclaimer p {
+  margin-top: 0.5em;
+  font-weight: 300;
+}
