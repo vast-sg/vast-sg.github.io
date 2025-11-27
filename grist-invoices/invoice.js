@@ -1,5 +1,5 @@
 function ready(fn) {
-  if (document.readyState !== 'loading'){
+  if (document.readyState !== 'loading') {
     fn();
   } else {
     document.addEventListener('DOMContentLoaded', fn);
@@ -88,19 +88,19 @@ function formatNumberAsUSD(value) {
   return result;
 }
 
-Vue.filter('fallback', function(value, str) {
+Vue.filter('fallback', function (value, str) {
   if (!value) {
     throw new Error("Please provide column " + str);
   }
   return value;
 });
 
-Vue.filter('asDate', function(value) {
-  if (typeof(value) === 'number') {
+Vue.filter('asDate', function (value) {
+  if (typeof (value) === 'number') {
     value = new Date(value * 1000);
   }
   const date = moment.utc(value)
-  return date.isValid() ? date.format('MMMM DD, YYYY') : value;
+  return date.isValid() ? date.format('DD/MM/YYYY') : value;
 });
 
 function tweakUrl(url) {
@@ -154,8 +154,8 @@ function updateInvoice(row) {
     // Add some guidance about columns.
     const want = new Set(Object.keys(addDemo({})));
     const accepted = new Set(['References']);
-    const importance = ['Number', 'Client', 'Items', 'Total', 'Invoicer', 'Due', 
-                        'Issued', 'Subtotal', 'Deduction', 'Taxes', 'Note', 'Paid'];
+    const importance = ['Number', 'Client', 'Items', 'Total', 'Invoicer', 'Due',
+      'Issued', 'Subtotal', 'Deduction', 'Taxes', 'Note', 'Paid'];
     if (!('Due' in row || 'Issued' in row)) {
       const seen = new Set(Object.keys(row).filter(k => k !== 'id' && k !== '_error_'));
       const help = row.Help = {};
@@ -205,7 +205,7 @@ function updateInvoice(row) {
   }
 }
 
-ready(function() {
+ready(function () {
   // Update the invoice anytime the document data changes.
   grist.ready();
   grist.onRecord(updateInvoice);
@@ -226,7 +226,7 @@ ready(function() {
     if (msg.tableId && !msg.dataChange) { app.RowConnected = true; }
   });
 
-  Vue.config.errorHandler = function (err, vm, info)  {
+  Vue.config.errorHandler = function (err, vm, info) {
     handleError(err);
   };
 
