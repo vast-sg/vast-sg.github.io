@@ -170,7 +170,7 @@ p.note {
 }
 
 div.paid {
-  position: relative;
+  /* position: relative;
   left: 40%;
   color: red;
   rotate: 15deg;
@@ -179,7 +179,14 @@ div.paid {
   border: 5px solid red;
   float: left;
   font-weight: normal;
-  padding: 1cqi 20px;
+  padding: 1cqi 20px; */
+  border: 2px solid #aaa;
+  color: #aaa;
+  text-align: center;
+  padding: 5px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .app {
@@ -328,9 +335,14 @@ div.column-name {
 
 .payment {
   display: grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns: 1fr 100px 240px;
+  align-items: start;
   padding: 8px;
   margin-top: 80px;
+}
+
+.late-payment {
+  padding: 0 8px 0 16px;
 }
 
 .bank-info {
@@ -347,8 +359,9 @@ div.column-name {
   width: 100px;
 }
 
+
 .paynow {
-  width: 100px;
+  width: 80px;
   height: auto;
-  padding: 0 8px;
+  padding: 0 10px;
 }
