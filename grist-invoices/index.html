@@ -41,8 +41,8 @@
       <div class="top">
         <div class="block">
           <div class="header">
-            <svg style="width: 200px; height: auto; margin-bottom: 2em;" fill="none" height="200" viewBox="0 0 800 200"
-              width="800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg class="logo" fill="none" height="200" viewBox="0 0 800 200" width="800"
+              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <clipPath id="a">
                 <path d="m0 0h800v200h-800z" />
               </clipPath>
@@ -55,20 +55,20 @@
                 <path d="m650 98h100v100h-100z" />
               </g>
             </svg>
-            <div class="meta title">Invoice</div>
+            <div class="meta title font-sans">Invoice</div>
           </div>
           <!-- <div class="info"><span class="meta">Invoice Number</span> #{{ invoice.Number }}</div> -->
           <div class="info">{{ invoice.Number }}</div>
           <div class="info" v-if="invoice.Issued">
-            <div class="meta date-tag">Issued</div> {{ invoice.Issued | asDate }}
+            <div class="meta date-tag">Issued</div>{{ invoice.Issued | asDate }}
           </div>
           <div class="info" v-if="invoice.Due">
-            <div class="meta date-tag">Due</div> {{ invoice.Due | asDate }}
+            <div class="meta date-tag">Due</div>{{ invoice.Due | asDate }}
           </div>
         </div>
 
         <div class="supplier">
-          <span style="opacity: 0.25;">Private & Confidential</span>
+          <span style="opacity: 0.5; font-weight: 300;">Private & Confidential</span>
           <div v-for="business in (invoice.Invoicer ? [invoice.Invoicer] : [])">
             <template v-if="typeof(business) === 'string'">
               <div class="address newlined">{{ business }}</div>
@@ -100,7 +100,7 @@
       </div>
 
       <div class="client" v-for="business in (invoice.Client ? [invoice.Client] : [])">
-        <div class="title">Client</div>
+        <div class="title">Bill to:</div>
         <div class="details">
           <template v-if="typeof(business) === 'string'">
             <div class="newlined">{{ business }}</div>
@@ -134,7 +134,7 @@
         </template>
         <template v-else>
           <tr>
-            <th>Description</th>
+            <th>Item</th>
             <th class="money">Unit Price</th>
             <th class="number">Quantity</th>
             <th class="money">Total</th>
@@ -154,8 +154,8 @@
           <div class="details">{{ invoice.Subtotal | currency }}</div>
         </div>
         <div class="part">
-          <div class="title">Deduction</div>
-          <div class="details">{{ invoice.Deduction | currency }}</div>
+          <div class="title">Discount</div>
+          <div class="details">{{ invoice.Discount | currency }}</div>
         </div>
         <div class="part">
           <div class="title">Taxes</div>
@@ -201,15 +201,6 @@
           </div>
         </div>
       </template>
-      <div class="disclaimer">
-        <span>Confidentiality and Non-Disclosure</span>
-        <p>All information in this document is confidential and proprietary. Vast Design has sole ownership of the
-          data,
-          images, trademarks and any other material contained herein. The recipient of this document agrees that its
-          sole use will be as agreed upon with Vast Design. The recipient also agrees not to divulge this document in
-          part or in full to any third party. All recipients are legally bound by the preceding agreements upon
-          acceptance of this document, even in the event of discontinuation of employment.</p>
-      </div>
       <template v-if="invoice.Paid">
         <div class="paid">
           PAID
