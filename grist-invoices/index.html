@@ -55,6 +55,14 @@
                 <path d="m650 98h100v100h-100z" />
               </g>
             </svg>
+            <template v-if="invoice.Paid">
+              <div class="paid">
+                <span>P</span>
+                <span>A</span>
+                <span>I</span>
+                <span>D</span>
+              </div>
+            </template>
             <!-- <div class="meta title font-sans">Invoice</div> -->
           </div>
           <!-- <div class="info"><span class="meta">Invoice Number</span> #{{ invoice.Number }}</div> -->
@@ -188,9 +196,6 @@
           <div class="title">TOTAL</div>
           <div class="details">{{ invoice.Total | currency }}</div>
         </div>
-        <div class="thanks">
-          Thank you for your business!
-        </div>
       </div>
 
       <template v-if="invoice.Note">
@@ -255,16 +260,20 @@
           <div class="details">
             53428763L
           </div>
+
+
         </div>
         <div>
           <img class="paynow" src="./paynow.png" />
         </div>
-      </div>
-      <template v-if="invoice.Paid">
-        <div class="paid">
-          PAID
+        <div class="late-payment">
+          Late payments are subject to a fee of 5% per month.
+          All payments mentioned above are in Singapore Dollars.
+          <br />
+          Thank you for your business!
         </div>
-      </template>
+      </div>
+
 
 
 
