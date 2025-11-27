@@ -104,7 +104,10 @@
                   <div class="phone">{{ business.Phone }}</div>
                 </template>
                 <template v-if="business.Website">
-                  <div class="website"><a v-bind:href="business.Url">{{ business.Website }}</a></div>
+                  <div class="website">
+                    {{ business.Website }}
+                    <!-- <a v-bind:href="business.Url">{{ business.Website }}</a> -->
+                  </div>
                 </template>
               </template>
             </div>
