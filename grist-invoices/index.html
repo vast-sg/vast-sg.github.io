@@ -106,7 +106,7 @@
 
       <div class="meta">
         <div class="info">
-          INVOICE:<br />
+          INVOICE<br />
           {{ invoice.Number }}
         </div>
         <div class="info">
@@ -173,20 +173,23 @@
 
       <div class="summary">
         <div class="part">
-          <div class="title">Subtotal</div>
+          <div class="title">SUBTOTAL</div>
           <div class="details">{{ invoice.Subtotal | currency }}</div>
         </div>
         <div class="part">
-          <div class="title">Discount</div>
+          <div class="title">DISCOUNT</div>
           <div class="details">{{ invoice.Discount | currency }}</div>
         </div>
         <div class="part">
-          <div class="title">Taxes</div>
+          <div class="title">TAXES</div>
           <div class="details">{{ invoice.Taxes | currency }}</div>
         </div>
         <div class="total">
-          <div class="title">Total</div>
+          <div class="title">TOTAL</div>
           <div class="details">{{ invoice.Total | currency }}</div>
+        </div>
+        <div class="thanks">
+          Thank you for your business!
         </div>
       </div>
 
@@ -224,6 +227,39 @@
           </div>
         </div>
       </template>
+
+      <div class="payment">
+        <div class="bank-info">
+          <div class="main-title">PAYMENT VIA FAST/ACT/GIRO/PAYNOW</div>
+          <div class="title">
+            BANK
+          </div>
+          <div class="details">
+            UOB
+          </div>
+          <div class="title">
+            ACCOUNT
+          </div>
+          <div class="details">
+            387-312-257-7
+          </div>
+          <div class="title">
+            NAME
+          </div>
+          <div class="details">
+            VAST DESIGN
+          </div>
+          <div class="title">
+            UEN
+          </div>
+          <div class="details">
+            53428763L
+          </div>
+        </div>
+        <div>
+          <img class="paynow" src="./paynow.png" />
+        </div>
+      </div>
       <template v-if="invoice.Paid">
         <div class="paid">
           PAID
