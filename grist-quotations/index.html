@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Grist Quotation</title>
+  <title>QUOTATION</title>
 
   <!-- A template for showing an quotation in a Custom Widget in Grist. -->
   <!-- Uses Vue.js, moment, and the Grist Plugin API -->
@@ -55,14 +55,6 @@
                 <path d="m650 98h100v100h-100z" />
               </g>
             </svg>
-            <template v-if="quotation.Paid">
-              <div class="paid">
-                <span>P</span>
-                <span>A</span>
-                <span>I</span>
-                <span>D</span>
-              </div>
-            </template>
             <!-- <div class="meta title font-sans">Quotation</div> -->
           </div>
           <!-- <div class="info"><span class="meta">Quotation Number</span> #{{ quotation.Number }}</div> -->
@@ -117,20 +109,20 @@
 
       <div class="meta">
         <div class="info">
-          INVOICE<br />
+          QUOTATION<br />
           {{ quotation.Number }}
         </div>
         <div class="info">
           <div v-if="quotation.Issued">
             <div class="date-tag">ISSUED</div>{{ quotation.Issued | asDate }}
           </div>
-          <div v-if="quotation.Due">
-            <div class="date-tag">DUE</div>{{ quotation.Due | asDate }}
+          <div v-if="quotation.Valid_Till">
+            <div class="date-tag">VALID TILL</div>{{ quotation.Valid_Till | asDate }}
           </div>
         </div>
         <div class="client">
           <template v-for="business in (quotation.Client ? [quotation.Client] : [])">
-            <div class="title">BILL TO</div>
+            <div class="title">QUOTATION TO</div>
             <div class="details">
               <template v-if="typeof(business) === 'string'">
                 <div class="newlined">{{ business }}</div>
@@ -236,45 +228,14 @@
         </div>
       </template>
 
-      <div class="payment">
-        <div class="bank-info">
-          <div class="main-title">PAYMENT VIA FAST/ACT/GIRO/PAYNOW</div>
-          <div class="title">
-            BANK
-          </div>
-          <div class="details">
-            UOB
-          </div>
-          <div class="title">
-            ACCOUNT
-          </div>
-          <div class="details">
-            387-312-257-7
-          </div>
-          <div class="title">
-            NAME
-          </div>
-          <div class="details">
-            VAST DESIGN
-          </div>
-          <div class="title">
-            UEN
-          </div>
-          <div class="details">
-            53428763L
-          </div>
-
-
-        </div>
+      <div class="disclaimer">
         <div>
-
-        </div>
-        <div class="late-payment">
-          Thank you for your business!
-          <br />
-          All payments mentioned above are in Singapore Dollars.
-          <br />
-          Late payments are subject to a fee of 5% per month.
+          <span>Confidentiality and Non-Disclosure</span>
+          <p>All information in this document is confidential and proprietary. Vast Design has sole ownership of the
+            data, images, trademarks and any other material contained herein. The recipient of this document agrees that
+            its sole use will be as agreed upon with Vast Design. The recipient also agrees not to divulge this document
+            in part or in full to any third party. All recipients are legally bound by the preceding agreements upon
+            acceptance of this document, even in the event of discontinuation of employment.</p>
         </div>
       </div>
 
@@ -286,6 +247,25 @@
           Thank you!
         </div>
       </div> -->
+
+
+      <div class="acceptance">
+        <div>
+          <span>Acceptance of Terms</span>
+          <p>The client acknowledges that he/she has read, understood and accepts the contract price, payment terms and
+            the terms and conditions outlined above. The undersigned agrees to the terms of this agreement on behalf of
+            his or her organization or business.</p>
+          <p>
+            We, <span class="signature"></span> hereby confirm acceptance of the appointment of Vast Design for the
+            above-mentioned
+            project in accordance to the terms and conditions stated therein.
+          </p>
+          <p>Yours faithfully,</p>
+          <span class="signature"></span>
+          <p class="signature-label">Signature and Name of Signatory</p>
+        </div>
+      </div>
+
 
       <div class="print">
         <a href="javascript:window.print()">Print</a>
