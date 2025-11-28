@@ -3,7 +3,7 @@ const exampleData = {
   Issued: Date.parse('2020-10-12') / 1000,
   Due: Date.parse('2020-11-12') / 1000,
 
-  Invoicer: {
+  Company: {
     Name: 'Thunderous Applause',
     Street1: '812 Automated Rd',
     Street2: null,
