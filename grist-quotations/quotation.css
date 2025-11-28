@@ -339,6 +339,7 @@ div.column-name {
 .terms-entry {
   display: grid;
   gap: 4px;
+  white-space: pre-wrap;
 }
 
 .disclaimer,
@@ -371,4 +372,3 @@ div.column-name {
   position: relative;
   top: -5px;
 }
-
