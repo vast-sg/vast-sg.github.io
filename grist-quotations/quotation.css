@@ -3,7 +3,7 @@ body {
   font-size: 12px;
   max-width: 800px;
   margin: 0 auto;
-  padding: 60px 30px;
+  /* padding: 60px 30px; */
   background: #fff;
 }
 
@@ -95,7 +95,7 @@ table.items td {
 
 div.date-tag {
   display: inline-block;
-  min-width: 70px;
+  min-width: 79px;
 }
 
 div.top {
@@ -319,50 +319,33 @@ div.column-name {
   border-radius: 0.25em;
 }
 
-.disclaimer {
-  font-size: 14px;
-  display: flex;
-  flex-direction: column;
-}
-
-.disclaimer span {
-  font-weight: 500;
-}
-
-.disclaimer p {
-  margin-top: 0.5em;
-  font-weight: 300;
-}
-
-.payment {
+.disclaimer,
+.acceptance {
+  padding: 80px 8px;
   display: grid;
-  grid-template-columns: 1fr 100px 240px;
-  align-items: start;
-  padding: 8px;
-  margin-top: 80px;
+  grid-template-columns: 1fr 232px;
 }
 
-.late-payment {
-  padding: 0 8px 0 16px;
+.disclaimer span,
+.acceptance span {
+  text-transform: uppercase;
 }
 
-.bank-info {
-  width: fit-content;
-  display: grid;
-  grid-template-columns: auto auto;
+.disclaimer p,
+.acceptance p {
+  margin-top: 6px;
 }
 
-.bank-info .main-title {
-  grid-column: 1 / span 2;
+.signature {
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  min-width: 223px;
+  border-bottom: 1px solid #222;
+  margin-top: 40px;
 }
 
-.bank-info .title {
-  width: 100px;
-}
-
-
-.paynow {
-  width: 80px;
-  height: auto;
-  padding: 0 10px;
+.signature-label {
+  position: relative;
+  top: -5px;
 }
