@@ -3,18 +3,18 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Grist Invoice</title>
+  <title>Grist Quotation</title>
 
-  <!-- A template for showing an invoice in a Custom Widget in Grist. -->
+  <!-- A template for showing an quotation in a Custom Widget in Grist. -->
   <!-- Uses Vue.js, moment, and the Grist Plugin API -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
   <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
 
-  <script src="invoice.js"></script>
+  <script src="quotation.js"></script>
   <script src="exampleData.js"></script>
 
-  <link rel="stylesheet" href="invoice.css">
+  <link rel="stylesheet" href="quotation.css">
 </head>
 
 <body>
@@ -29,15 +29,15 @@
         </ul>
         <p>Examples:</p>
         <ul>
-          <li><a class="button" href="index.html?demo=1">A filled out invoice</a></li>
-          <li><a class="button" href="index.html?labels=1">A labelled invoice</a></li>
+          <li><a class="button" href="index.html?demo=1">A filled out quotation</a></li>
+          <li><a class="button" href="index.html?labels=1">A labelled quotation</a></li>
         </ul>
       </template>
       <template v-else>
         {{ status }}
       </template>
     </div>
-    <template v-if="invoice">
+    <template v-if="quotation">
       <div class="top">
         <div class="block">
           <div class="header">
@@ -55,7 +55,7 @@
                 <path d="m650 98h100v100h-100z" />
               </g>
             </svg>
-            <template v-if="invoice.Paid">
+            <template v-if="quotation.Paid">
               <div class="paid">
                 <span>P</span>
                 <span>A</span>
@@ -63,15 +63,15 @@
                 <span>D</span>
               </div>
             </template>
-            <!-- <div class="meta title font-sans">Invoice</div> -->
+            <!-- <div class="meta title font-sans">Quotation</div> -->
           </div>
-          <!-- <div class="info"><span class="meta">Invoice Number</span> #{{ invoice.Number }}</div> -->
-          <!-- <div class="info">{{ invoice.Number }}</div>
-          <div class="info" v-if="invoice.Issued">
-            <div class="meta date-tag">Issued</div>{{ invoice.Issued | asDate }}
+          <!-- <div class="info"><span class="meta">Quotation Number</span> #{{ quotation.Number }}</div> -->
+          <!-- <div class="info">{{ quotation.Number }}</div>
+          <div class="info" v-if="quotation.Issued">
+            <div class="meta date-tag">Issued</div>{{ quotation.Issued | asDate }}
           </div>
-          <div class="info" v-if="invoice.Due">
-            <div class="meta date-tag">Due</div>{{ invoice.Due | asDate }}
+          <div class="info" v-if="quotation.Due">
+            <div class="meta date-tag">Due</div>{{ quotation.Due | asDate }}
           </div> -->
         </div>
 
@@ -81,7 +81,7 @@
             <div class="title">
               FROM
             </div>
-            <div v-for="business in (invoice.Company ? [invoice.Company] : [])">
+            <div v-for="business in (quotation.Company ? [quotation.Company] : [])">
               <template v-if="typeof(business) === 'string'">
                 <div class="address newlined">{{ business }}</div>
               </template>
@@ -118,18 +118,18 @@
       <div class="meta">
         <div class="info">
           INVOICE<br />
-          {{ invoice.Number }}
+          {{ quotation.Number }}
         </div>
         <div class="info">
-          <div v-if="invoice.Issued">
-            <div class="date-tag">ISSUED</div>{{ invoice.Issued | asDate }}
+          <div v-if="quotation.Issued">
+            <div class="date-tag">ISSUED</div>{{ quotation.Issued | asDate }}
           </div>
-          <div v-if="invoice.Due">
-            <div class="date-tag">DUE</div>{{ invoice.Due | asDate }}
+          <div v-if="quotation.Due">
+            <div class="date-tag">DUE</div>{{ quotation.Due | asDate }}
           </div>
         </div>
         <div class="client">
-          <template v-for="business in (invoice.Client ? [invoice.Client] : [])">
+          <template v-for="business in (quotation.Client ? [quotation.Client] : [])">
             <div class="title">BILL TO</div>
             <div class="details">
               <template v-if="typeof(business) === 'string'">
@@ -156,14 +156,14 @@
 
 
       <table class="items">
-        <template v-if="!Array.isArray(invoice.Items)">
+        <template v-if="!Array.isArray(quotation.Items)">
           <tr>
             <th>Description</th>
             <th class="money">Total</th>
           </tr>
           <tr>
-            <td>{{ invoice.Items }}</td>
-            <td class="money">{{ invoice.Total | currency }}</td>
+            <td>{{ quotation.Items }}</td>
+            <td class="money">{{ quotation.Total | currency }}</td>
           </tr>
         </template>
         <template v-else>
@@ -173,7 +173,7 @@
             <th class="number">Quantity</th>
             <th class="money">Total</th>
           </tr>
-          <tr v-for="item in invoice.Items">
+          <tr v-for="item in quotation.Items">
             <td>{{ item.Description }}</td>
             <td class="money">{{ item.Price | currency }}</td>
             <td class="number">{{ item.Quantity }}</td>
@@ -185,27 +185,27 @@
       <div class="summary">
         <div class="part">
           <div class="title">SUBTOTAL</div>
-          <div class="details">{{ invoice.Subtotal | currency }}</div>
+          <div class="details">{{ quotation.Subtotal | currency }}</div>
         </div>
         <div class="part">
           <div class="title">DISCOUNT</div>
-          <div class="details">{{ invoice.Discount | currency }}</div>
+          <div class="details">{{ quotation.Discount | currency }}</div>
         </div>
         <div class="part">
           <div class="title">TAXES</div>
-          <div class="details">{{ invoice.Taxes | currency }}</div>
+          <div class="details">{{ quotation.Taxes | currency }}</div>
         </div>
         <div class="total">
           <div class="title">TOTAL</div>
-          <div class="details">{{ invoice.Total | currency }}</div>
+          <div class="details">{{ quotation.Total | currency }}</div>
         </div>
       </div>
 
-      <template v-if="invoice.Note">
-        <p class="note">{{ invoice.Note }}</p>
+      <template v-if="quotation.Note">
+        <p class="note">{{ quotation.Note }}</p>
       </template>
 
-      <template v-for="help in (invoice.Help ? [invoice.Help] : [])">
+      <template v-for="help in (quotation.Help ? [quotation.Help] : [])">
         <div class="help">
           <div class="help-close">
             Add <span class="column-name">Due</span> or <span class="column-name">ISSUED</span> date to hide this help.
@@ -225,7 +225,7 @@
                 </td>
               </tr>
             </table>
-            <template v-if="invoice.SuggestReferencesColumn">
+            <template v-if="quotation.SuggestReferencesColumn">
               <div>For structured address and item information, add a <span class="column-name">References</span> column
                 with this formula:</div>
               <div>
