@@ -247,7 +247,21 @@
           Thank you!
         </div>
       </div> -->
-
+      <div class="terms">
+        <div>
+          <div class="terms-title">Terms and Conditions</div>
+          <ol class="terms-list">
+            <template v-if="Array.isArray(quotation.Terms)">
+              <li v-for="item in quotation.Terms">
+                <span class="terms-entry">
+                  <span class="terms-name">{{ item.Name }}</span>
+                  <span class="terms-content">{{ item.Content }}</span>
+                </span>
+              </li>
+            </template>
+          </ol>
+        </div>
+      </div>
 
       <div class="acceptance">
         <div>
