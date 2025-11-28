@@ -81,7 +81,7 @@
             <div class="title">
               FROM
             </div>
-            <div v-for="business in (invoice.Invoicer ? [invoice.Invoicer] : [])">
+            <div v-for="business in (invoice.Company ? [invoice.Company] : [])">
               <template v-if="typeof(business) === 'string'">
                 <div class="address newlined">{{ business }}</div>
               </template>
