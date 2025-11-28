@@ -38,6 +38,29 @@ const exampleData = {
     },
   ],
 
+  Terms: [
+    {
+      Name: 'Wolf Whistle',
+      Content: 'Reprehenderit aliqua adipisicing est dolore veniam duis sit laborum esse deserunt mollit eiusmod minim ut officia. Elit proident est ullamco consequat dolor.',
+      Order: 2,
+    },
+    {
+      Name: 'Bravo',
+      Content: 'Reprehenderit aliqua adipisicing est dolore veniam duis sit laborum esse deserunt mollit eiusmod minim ut officia. Elit proident est ullamco consequat dolor.',
+      Order: 1,
+    },
+    {
+      Name: 'Wolf Bravo',
+      Content: 'Reprehenderit aliqua adipisicing est dolore veniam duis sit laborum esse deserunt mollit eiusmod minim ut officia. Elit proident est ullamco consequat dolor.',
+      Order: 4,
+    },
+    {
+      Name: 'Whistle',
+      Content: 'Reprehenderit aliqua adipisicing est dolore veniam duis sit laborum esse deserunt mollit eiusmod minim ut officia. Elit proident est ullamco consequat dolor.',
+      Order: 3,
+    },
+  ],
+
   Subtotal: 615,
   Deduction: null,
   Taxes: null,
