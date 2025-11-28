@@ -18,7 +18,7 @@ body {
 }
 
 .meta {
-  padding: 80px 8px;
+  margin: 80px 8px;
   display: grid;
   grid-template-columns: 1fr 1fr 340px;
 }
@@ -323,6 +323,7 @@ div.column-name {
   padding: 0px 8px;
   display: grid;
   grid-template-columns: 1fr 232px;
+  break-inside: avoid;
 }
 
 .terms-title {
@@ -340,13 +341,15 @@ div.column-name {
   display: grid;
   gap: 4px;
   white-space: pre-wrap;
+  break-inside: avoid;
 }
 
 .disclaimer,
 .acceptance {
-  padding: 80px 8px;
+  margin: 80px 8px;
   display: grid;
   grid-template-columns: 1fr 232px;
+  break-inside: avoid;
 }
 
 .disclaimer span,
