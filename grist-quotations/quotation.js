@@ -19,17 +19,17 @@ function addDemo(row) {
     }
     if (!('Note' in row)) { row.Note = '(Anything in a Note column goes here)'; }
   }
-  if (!row.Invoicer) {
-    row.Invoicer = {
-      Name: 'Invoicer.Name',
-      Street1: 'Invoicer.Street1',
-      Street2: 'Invoicer.Street2',
-      City: 'Invoicer.City',
+  if (!row.Company) {
+    row.Company = {
+      Name: 'Company.Name',
+      Street1: 'Company.Street1',
+      Street2: 'Company.Street2',
+      City: 'Company.City',
       State: '.State',
       Zip: '.Zip',
-      Email: 'Invoicer.Email',
-      Phone: 'Invoicer.Phone',
-      Website: 'Invoicer.Website'
+      Email: 'Company.Email',
+      Phone: 'Company.Phone',
+      Website: 'Company.Website'
     }
   }
   if (!row.Client) {
@@ -63,7 +63,7 @@ function addDemo(row) {
 
 const data = {
   count: 0,
-  invoice: '',
+  quotation: '',
   status: 'waiting',
   tableConnected: false,
   rowConnected: false,
@@ -114,7 +114,7 @@ function tweakUrl(url) {
 function handleError(err) {
   console.error(err);
   const target = app || data;
-  target.invoice = '';
+  target.quotation = '';
   target.status = String(err).replace(/^Error: /, '');
   console.log(data);
 }
@@ -154,7 +154,7 @@ function updateInvoice(row) {
     // Add some guidance about columns.
     const want = new Set(Object.keys(addDemo({})));
     const accepted = new Set(['References']);
-    const importance = ['Number', 'Client', 'Items', 'Total', 'Invoicer', 'Due',
+    const importance = ['Number', 'Client', 'Items', 'Total', 'Company', 'Due',
       'Issued', 'Subtotal', 'Deduction', 'Taxes', 'Note', 'Paid'];
     if (!('Due' in row || 'Issued' in row)) {
       const seen = new Set(Object.keys(row).filter(k => k !== 'id' && k !== '_error_'));
@@ -185,28 +185,28 @@ function updateInvoice(row) {
         console.error(e);
       }
     }
-    if (row.Invoicer && row.Invoicer.Website && !row.Invoicer.Url) {
-      row.Invoicer.Url = tweakUrl(row.Invoicer.Website);
+    if (row.Company && row.Company.Website && !row.Company.Url) {
+      row.Company.Url = tweakUrl(row.Company.Website);
     }
 
     // Fiddle around with updating Vue (I'm not an expert).
     for (const key of want) {
-      Vue.delete(data.invoice, key);
+      Vue.delete(data.quotation, key);
     }
     for (const key of ['Help', 'SuggestReferencesColumn', 'References']) {
-      Vue.delete(data.invoice, key);
+      Vue.delete(data.quotation, key);
     }
-    data.invoice = Object.assign({}, data.invoice, row);
+    data.quotation = Object.assign({}, data.quotation, row);
 
-    // Make invoice information available for debugging.
-    window.invoice = row;
+    // Make quotation information available for debugging.
+    window.quotation = row;
   } catch (err) {
     handleError(err);
   }
 }
 
 ready(function () {
-  // Update the invoice anytime the document data changes.
+  // Update the quotation anytime the document data changes.
   grist.ready();
   grist.onRecord(updateInvoice);
 
