@@ -7,11 +7,11 @@ function ready(fn) {
 }
 
 /**
- * Demo is only shown when the row has no Issued or Due date.
+ * Demo is only shown when the row has no Issued or Valid_Till date.
  */
 function addDemo(row) {
-  if (!('Issued' in row) && !('Due' in row)) {
-    for (const key of ['Number', 'Issued', 'Due']) {
+  if (!('Issued' in row) && !('Valid_Till' in row)) {
+    for (const key of ['Number', 'Issued', 'Valid_Till']) {
       if (!(key in row)) { row[key] = key; }
     }
     for (const key of ['Subtotal', 'Deduction', 'Taxes', 'Total']) {
@@ -154,9 +154,9 @@ function updateInvoice(row) {
     // Add some guidance about columns.
     const want = new Set(Object.keys(addDemo({})));
     const accepted = new Set(['References']);
-    const importance = ['Number', 'Client', 'Items', 'Total', 'Company', 'Due',
+    const importance = ['Number', 'Client', 'Items', 'Total', 'Company', 'Valid_Till',
       'Issued', 'Subtotal', 'Deduction', 'Taxes', 'Note', 'Paid'];
-    if (!('Due' in row || 'Issued' in row)) {
+    if (!('Valid_Till' in row || 'Issued' in row)) {
       const seen = new Set(Object.keys(row).filter(k => k !== 'id' && k !== '_error_'));
       const help = row.Help = {};
       help.seen = prepareList(seen);
@@ -172,7 +172,7 @@ function updateInvoice(row) {
       if (recognized.length > 0) {
         help.recognized = prepareList(recognized);
       }
-      if (!seen.has('References') && !(row.Issued || row.Due)) {
+      if (!seen.has('References') && !(row.Issued || row.Valid_Till)) {
         row.SuggestReferencesColumn = true;
       }
     }
