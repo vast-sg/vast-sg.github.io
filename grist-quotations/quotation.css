@@ -81,6 +81,7 @@ table.items td {
   border-bottom: 1px solid #eee;
   padding: 8px;
   white-space: pre-wrap;
+  vertical-align: top;
 }
 
 .money,
