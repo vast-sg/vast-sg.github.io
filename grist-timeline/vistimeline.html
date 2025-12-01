@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+  <title>Timeline</title>
+  <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+  <script type="text/javascript" src="vis-timeline-graph2d.min.js"></script>
+  <link href="vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+  <style type="text/css">
+    body, html {
+      font-family: arial, sans-serif;
+      font-size: 10pt;
+    }
+    #visualization {
+      border: 1px solid lightgray;
+    }
+    .vis-item.blue {
+      background-color: #066df7;
+      color: white;
+    }
+    .vis-item.green {
+      background-color: lightgreen;
+    }
+    .vis-item.darkgreen {
+      background-color: darkgreen;
+      color: white;
+    }
+    .vis-item.orange {
+      background-color: #e67a5c;
+      color: white;
+    }
+    .vis-item.purple {
+      background-color: #b78aee;
+    }
+    .vis-item.red {
+      background-color: #e62d2d;
+      color: white
+    }
+    .vis-item.yellow {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div id="visualization"></div>
+
+  <script type="text/javascript">
+
+    var container = document.getElementById('visualization');
+    var options = {
+      stack: false
+    };
+    var timeline = new vis.Timeline(container, null, options);
+
+    grist.ready({columns: [
+      { name: "content", title: "Content", optional: false, description: "Some text", allowMultiple: false },
+      { name: "start", title: "Start", optional: false, type: "Date", description: "Some text", allowMultiple: false },
+      { name: "end", title: "End", optional: true, type: "Date", description: "Some text", allowMultiple: false },
+      { name: "group", title: "Group", optional: true, description: "Some text", allowMultiple: false },
+      { name: "className", title: "Color", optional: true, description: "any color between red, bleu, yellow, green, darkgree, purple", allowMultiple: false },
+    ], requiredAccess: 'read table'});
+
+    grist.onRecords(function (records, mappings) {
+      const items = grist.mapColumnNames(records);
+      const groups = Array.from(new Set(items.map(item => item.group))).map((group, index) => ({id: index, content: group}));
+
+      items.forEach(item => {
+        const helper = groups.find(g => g.content === item.group);
+        if (helper) {
+          item.group = helper.id; // replace the group name with the ID from helperList
+        }
+      });
+
+      const items_dataset = new vis.DataSet(items);
+      const groups_dataset = new vis.DataSet(groups);
+      timeline.setItems(items_dataset);
+      timeline.setGroups(groups_dataset);
+      timeline.fit();
+    });
+
+  </script>
+
+</body>
+</html>
+
