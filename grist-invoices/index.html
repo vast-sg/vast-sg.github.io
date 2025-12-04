@@ -118,7 +118,8 @@
       <div class="meta">
         <div class="info">
           INVOICE<br />
-          {{ invoice.Number }}
+          {{ invoice.Number }}<br />
+          {{ invoice.Project.Name }}
         </div>
         <div class="info">
           <div v-if="invoice.Issued">
