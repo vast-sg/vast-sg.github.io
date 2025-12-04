@@ -2,7 +2,16 @@ const exampleData = {
   Number: 14999,
   Issued: Date.parse('2020-10-12') / 1000,
   Due: Date.parse('2020-11-12') / 1000,
-
+  Project: {
+    Name: 'Project Name',
+    Client: {
+      Name: 'Monkeys Juggling',
+      Street1: '100 Banana St',
+      City: 'Bananaberg',
+      State: 'NJ',
+      Zip: '07048',
+    },
+  },
   Company: {
     Name: 'Thunderous Applause',
     Street1: '812 Automated Rd',
